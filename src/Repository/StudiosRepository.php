@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Studios;
@@ -14,7 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Studios[]    findAll()
  * @method Studios[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class StudiosRepository extends ServiceEntityRepository
+final class StudiosRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

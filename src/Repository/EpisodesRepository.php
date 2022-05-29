@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Episodes;
@@ -14,7 +16,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Episodes[]    findAll()
  * @method Episodes[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class EpisodesRepository extends ServiceEntityRepository
+final class EpisodesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

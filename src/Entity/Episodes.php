@@ -46,7 +46,7 @@ class Episodes
         return $this->rightsowner;
     }
 
-    public function setRightsowner(Studios $rightsowner): self
+    public function setRightsowner(?Studios $rightsowner): self
     {
         $this->rightsowner = $rightsowner;
 

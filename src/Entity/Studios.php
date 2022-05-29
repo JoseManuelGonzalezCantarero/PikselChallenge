@@ -2,20 +2,17 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\StudiosRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StudiosRepository::class)]
-#[ApiResource]
 class Studios
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private int $id;
+    #[ORM\Column(type: 'string', length: 50)]
+    private string $id;
 
     #[ORM\Column(type: 'string', length: 30)]
     private string $name;
@@ -31,9 +28,14 @@ class Studios
         $this->episodes = new ArrayCollection();
     }
 
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
+    }
+
+    public function setId(string $id): void
+    {
+        $this->id = $id;
     }
 
     public function getName(): string
@@ -61,7 +63,7 @@ class Studios
     }
 
     /**
-     * @return Collection<int, Episodes>
+     * @return Collection<string, Episodes>
      */
     public function getEpisodes(): Collection
     {

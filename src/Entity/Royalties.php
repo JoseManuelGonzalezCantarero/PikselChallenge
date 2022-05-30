@@ -13,19 +13,19 @@ class Royalties
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 50)]
-    private $rightsownerId;
+    private string $rightsownerId;
 
     #[ORM\Column(type: 'string', length: 30)]
-    private $rightsowner;
+    private string $rightsowner;
 
     #[ORM\Column(type: 'float')]
-    private $royalty;
+    private float $royalty;
 
     #[ORM\Column(type: 'integer')]
-    private $viewings;
+    private int $viewings;
 
     public function getId(): ?int
     {

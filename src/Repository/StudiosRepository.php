@@ -40,29 +40,4 @@ final class StudiosRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-//    /**
-//     * @return Studios[] Returns an array of Studios objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Studios
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

@@ -40,29 +40,4 @@ final class EpisodesRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-//    /**
-//     * @return Episodes[] Returns an array of Episodes objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Episodes
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

@@ -8,7 +8,7 @@ use App\Repository\RoyaltiesRepository;
 
 final class DeleteRoyalties
 {
-    public function __construct(private RoyaltiesRepository $royaltiesRepository)
+    public function __construct(private readonly RoyaltiesRepository $royaltiesRepository)
     {
     }
 

@@ -5,12 +5,12 @@ Feature:
     and its corresponding studio
 
     Scenario: I call the viewing endpoint with valid body
-        When the user sends a POST request to viewing endpoint
+        Given the user sends a POST request to viewing endpoint
         And it contains a valid body
         Then the response should be 202
-        And an insert should be done
+        And an insert or update should be done
         
     Scenario: I call the viewing endpoint with invalid body
-        When the user sends a POST request to viewing endpoint
+        Given the user sends a POST request to viewing endpoint
         And it contains an invalid body
         Then a bad request exception should be thrown

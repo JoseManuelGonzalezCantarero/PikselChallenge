@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 final class RoyaltyManagerResetContext extends TestCase implements Context
 {
-    public function __construct(private DeleteRoyalties $deleteRoyalties, private FindRoyalties $findRoyalties)
+    public function __construct(private readonly DeleteRoyalties $deleteRoyalties, private readonly FindRoyalties $findRoyalties)
     {
         parent::__construct();
         $this->rightsownerId = '665115721c6f44e49be3bd3e26606026';
@@ -21,7 +21,7 @@ final class RoyaltyManagerResetContext extends TestCase implements Context
     /**
      * @When the user sends a POST request to reset endpoint
      */
-    public function theUserSendsAPostRequestToResetEndpoint()
+    public function theUserSendsAPostRequestToResetEndpoint(): void
     {
         $this->response = new RoyaltyManagerReset($this->deleteRoyalties);
     }
@@ -29,7 +29,7 @@ final class RoyaltyManagerResetContext extends TestCase implements Context
     /**
      * @Then the response should be :httpResponseCode
      */
-    public function theResponseShouldBe(int $httpResponseCode)
+    public function theResponseShouldBe(int $httpResponseCode): void
     {
         self::assertSame($httpResponseCode, $this->response->__invoke()->getStatusCode());
     }
@@ -37,7 +37,7 @@ final class RoyaltyManagerResetContext extends TestCase implements Context
     /**
      * @Then the royalties table should be clean
      */
-    public function theRoyaltiesTableShouldBeClean()
+    public function theRoyaltiesTableShouldBeClean(): void
     {
         $royalty = $this->findRoyalties->findRoyaltyByRightsOwnerId($this->rightsownerId);
         self::assertSame(null, $royalty);

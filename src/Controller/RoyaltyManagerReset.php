@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Service\DeleteRoyalties;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Annotation\Route;
 use OpenApi\Attributes as OA;
@@ -15,7 +16,7 @@ use OpenApi\Attributes as OA;
 #[Route(path: '/royaltymanager')]
 final class RoyaltyManagerReset extends AbstractController
 {
-    public function __construct(private DeleteRoyalties $deleteRoyalties)
+    public function __construct(private readonly DeleteRoyalties $deleteRoyalties)
     {
     }
 
@@ -24,10 +25,10 @@ final class RoyaltyManagerReset extends AbstractController
      */
     #[Route(path: '/reset', name: 'reset', methods: ['POST'])]
     #[OA\Tag(name: 'Reset')]
-    #[OA\Response(response: 202, description: 'Reset operation done')]
+    #[OA\Response(response: Response::HTTP_ACCEPTED, description: 'Reset operation done')]
     public function __invoke(): JsonResponse
     {
         $this->deleteRoyalties->resetTable();
-        return new JsonResponse('', 202);
+        return new JsonResponse('', Response::HTTP_ACCEPTED);
     }
 }

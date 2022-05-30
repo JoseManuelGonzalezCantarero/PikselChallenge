@@ -17,12 +17,6 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 final class RoyaltyManagerViewingContext extends TestCase implements Context
 {
-    protected function tearDown(): void
-    {
-        Request::setTrustedProxies([], -1);
-        Request::setTrustedHosts([]);
-    }
-
     public function __construct(private FindEpisodes $findEpisodes, private SaveRoyalties $saveRoyalties, private FindRoyalties $findRoyalties)
     {
         parent::__construct();
@@ -34,7 +28,7 @@ final class RoyaltyManagerViewingContext extends TestCase implements Context
     /**
      * @When the user sends a POST request to viewing endpoint
      */
-    public function theUserSendsAPostRequestToViewingEndpoint()
+    public function theUserSendsAPostRequestToViewingEndpoint(): void
     {
         $this->response = new RoyaltyManagerViewing($this->findEpisodes, $this->saveRoyalties);
     }
@@ -42,7 +36,7 @@ final class RoyaltyManagerViewingContext extends TestCase implements Context
     /**
      * @When it contains a valid body
      */
-    public function itContainsAValidBody()
+    public function itContainsAValidBody(): void
     {
         self::assertNotNull($this->episode);
         self::assertNotNull($this->customer);
@@ -54,16 +48,16 @@ final class RoyaltyManagerViewingContext extends TestCase implements Context
     /**
      * @Then the response should be :httpResponseCode
      */
-    public function theResponseShouldBe(int $httpResponseCode)
+    public function theResponseShouldBe(int $httpResponseCode): void
     {
         $request = new Request([], ['episode' => $this->episode, 'customer' => $this->customer]);
         self::assertSame($httpResponseCode, $this->response->__invoke($request)->getStatusCode());
     }
 
     /**
-     * @Then an insert should be done
+     * @Then an insert or update should be done
      */
-    public function anInsertShouldBeDone()
+    public function anInsertOrUpdateShouldBeDone(): void
     {
         $royalty = $this->findRoyalties->findRoyaltyByRightsOwnerId($this->rightsownerId);
         self::assertInstanceOf(Royalties::class, $royalty);
@@ -72,7 +66,7 @@ final class RoyaltyManagerViewingContext extends TestCase implements Context
     /**
      * @When it contains an invalid body
      */
-    public function itContainsAnInvalidBody()
+    public function itContainsAnInvalidBody(): void
     {
         $this->episode = null;
     }
@@ -80,13 +74,12 @@ final class RoyaltyManagerViewingContext extends TestCase implements Context
     /**
      * @Then a bad request exception should be thrown
      */
-    public function aBadRequestExceptionShouldBeThrown()
+    public function aBadRequestExceptionShouldBeThrown(): void
     {
         try {
             $request = new Request([], ['episode' => $this->episode, 'customer' => $this->customer]);
             $this->response->__invoke($request)->getStatusCode();
-        } catch (BadRequestHttpException ) {}
+        } catch (BadRequestHttpException) {
+        }
     }
-
-
 }

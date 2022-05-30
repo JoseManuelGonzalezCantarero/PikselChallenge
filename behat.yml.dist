@@ -1,8 +1,20 @@
 default:
     suites:
-        default:
+        reset:
+            paths:
+                - features/RoyaltyManagerReset.feature
             contexts:
-                - App\Tests\Behat\DemoContext
-
+                - App\Tests\Behat\RoyaltyManagerResetContext
+        viewing:
+            paths:
+                - features/RoyaltyManagerViewing.feature
+            contexts:
+                - App\Tests\Behat\RoyaltyManagerViewingContext
+        payments:
+            paths:
+                - features/RoyaltyManagerPayments.feature
+            contexts:
+                - App\Tests\Behat\RoyaltyManagerPaymentsContext
     extensions:
-        FriendsOfBehat\SymfonyExtension: null
+        FriendsOfBehat\SymfonyExtension:
+            bootstrap: tests/bootstrap.php
